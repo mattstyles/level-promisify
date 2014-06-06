@@ -1,15 +1,18 @@
 var Proto = require( 'uberproto' ),
     Promise = require( 'es6-promise' ).Promise,
     Level = require( 'level' ),
-    Sublevel = require( 'level-sublevel' );
+    Sublevel = require( 'level-sublevel' ),
+    _ = require( 'lodash-node' );
 
 /**
  * Returns a level-promisify instance or a promise resolvable when the db is open
  */
 module.exports = function( loc, opts ) {
-    if ( !opts ) {
+    if ( !loc ) {
         throw new Error( 'Level requires a location' );
     }
+
+    opts = opts || {};
 
     if ( opts.sublevel ) {
         if ( opts.sync ) {
@@ -49,7 +52,12 @@ var LP = Proto.extend({
      * LevelUp API
      */
 
-    put: function( key, val, opts ) {
+    put: function( key, val, opts, cb ) {
+        if ( cb || _.isFunction( opts ) ) {
+            this._super( key, val, _.isFunction( opts ) ? null : opts, cb || opts );
+            return;
+        }
+
         return this._promise( function( resolve, reject ) {
             this._super( key, val, opts, function( err ) {
                 if ( err ) reject ( err );
@@ -59,7 +67,12 @@ var LP = Proto.extend({
     },
 
 
-    get: function( key, opts ) {
+    get: function( key, opts, cb ) {
+        if ( cb || _.isFunction( opts ) ) {
+            this._super( key, _.isFunction( opts ) ? null : opts, cb || opts );
+            return;
+        }
+
         return this._promise( function( resolve, reject ) {
             this._super( key, opts, function( err, val ) {
                 if ( err ) reject( err );
@@ -69,7 +82,12 @@ var LP = Proto.extend({
     },
 
 
-    del: function( key, opts ) {
+    del: function( key, opts, cb ) {
+        if ( cb || _.isFunction( opts ) ) {
+            this._super( key, _.isFunction( opts ) ? null : opts, cb || opts );
+            return;
+        }
+
         return this._promise( function( resolve, reject ) {
             this._super( key, opts, function( err ) {
                 if ( err ) reject( err );
@@ -79,9 +97,14 @@ var LP = Proto.extend({
     },
 
 
-    batch: function( ops, opts ) {
+    batch: function( ops, opts, cb ) {
         if ( !ops ) {
             return this._super();
+        }
+
+        if ( cb || _.isFunction( opts ) ) {
+            this._super( ops, _.isFunction( opts ) ? null : opts, cb || opts );
+            return;
         }
 
         return this._promise( function( resolve, reject ) {
