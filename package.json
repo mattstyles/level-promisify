@@ -8,6 +8,7 @@
   },
   "keywords": [
     "Level",
+    "Sublevel",
     "Leveldb",
     "Promise",
     "es6",
