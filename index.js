@@ -69,6 +69,10 @@ var LP = Proto.extend({
 
 
     batch: function( ops, opts ) {
+        if ( !ops ) {
+            return this._super();
+        }
+
         return this._promise( function( resolve, reject ) {
             this._super( ops, opts, function( err ) {
                 if ( err ) reject( err );
