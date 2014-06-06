@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "es6-promise": "^1.0.0",
-    "level": "^0.18.0"
+    "level": "^0.18.0",
+    "uberproto": "^1.1.1"
   }
 }

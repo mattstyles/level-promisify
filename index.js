@@ -1,19 +1,19 @@
-var Promise = require( 'es6-promise' ).Promise,
+var Proto = require( 'uberproto' ),
+    Promise = require( 'es6-promise' ).Promise,
     Level = require( 'level' );
-
 
 /**
  * Returns a level-promisify instance or a promise resolvable when the db is open
  */
 module.exports = function( loc, opts ) {
     if ( opts && opts.sync ) {
-        return new LP( Level( loc, opts ) );
+        return Proto.extend( LP, Level( loc, opts ) ).create();
     }
 
     return new Promise( function( resolve, reject ) {
         Level( loc, opts, function( err, db ) {
             if ( err ) reject( err );
-            resolve( new LP( db ) );
+            resolve( Proto.extend( LP, db ).create() );
         });
     });
 }
@@ -21,11 +21,11 @@ module.exports = function( loc, opts ) {
 /**
  * Level-promisify object
  */
-var LP = function( db ) {
-    this._level = db;
-}
+var LP = Proto.extend({
 
-LP.prototype = {
+    init: function() {
+        console.log( 'creating LP' );
+    },
 
     /**
      * Promise wrapper to ensure context
@@ -40,7 +40,7 @@ LP.prototype = {
 
     put: function( key, val, opts ) {
         return this._promise( function( resolve, reject ) {
-            this._level.put( key, val, opts, function( err ) {
+            this._super( key, val, opts, function( err ) {
                 if ( err ) reject ( err );
                 resolve();
             });
@@ -50,10 +50,30 @@ LP.prototype = {
 
     get: function( key, opts ) {
         return this._promise( function( resolve, reject ) {
-            this._level.get( key, opts, function( err, val ) {
+            this._super( key, opts, function( err, val ) {
                 if ( err ) reject( err );
                 resolve( val );
             });
         });
+    },
+
+
+    del: function( key, opts ) {
+        return this._promise( function( resolve, reject ) {
+            this._super( key, opts, function( err ) {
+                if ( err ) reject( err );
+                resolve();
+            });
+        });
+    },
+
+
+    batch: function( ops, opts ) {
+        return this._promise( function( resolve, reject ) {
+            this._super( ops, opts, function( err ) {
+                if ( err ) reject( err );
+                resolve();
+            });
+        })
     }
-}
+});
