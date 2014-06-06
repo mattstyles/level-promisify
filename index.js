@@ -58,6 +58,10 @@ var LP = Proto.extend({
             return;
         }
 
+        if ( opts && opts.sync ) {
+            return this._super( key, val, opts );
+        }
+
         return this._promise( function( resolve, reject ) {
             this._super( key, val, opts, function( err ) {
                 if ( err ) reject ( err );
@@ -71,6 +75,10 @@ var LP = Proto.extend({
         if ( cb || _.isFunction( opts ) ) {
             this._super( key, _.isFunction( opts ) ? null : opts, cb || opts );
             return;
+        }
+
+        if ( opts && opts.sync ) {
+            return this._super( key, opts );
         }
 
         return this._promise( function( resolve, reject ) {
