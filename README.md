@@ -156,11 +156,11 @@ As the promise are resolved within the usual `levelup` callback functions all of
 
 ## Additional Reading
 
-[Levelup](https://github.com/rvagg/node-levelup)
-[Sublevel](https://github.com/dominictarr/level-sublevel)
-[Levelup Mailing List](https://groups.google.com/forum/#!forum/node-levelup)
-[ES6 Promises](http://www.html5rocks.com/en/tutorials/es6/promises/)
-[JS Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Levelup](https://github.com/rvagg/node-levelup)
+* [Sublevel](https://github.com/dominictarr/level-sublevel)
+* [Levelup Mailing List](https://groups.google.com/forum/#!forum/node-levelup)
+* [ES6 Promises](http://www.html5rocks.com/en/tutorials/es6/promises/)
+* [JS Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 
 ## License
@@ -168,3 +168,7 @@ As the promise are resolved within the usual `levelup` callback functions all of
 [ISC](https://github.com/mattstyles/level-promisify/blob/master/LICENSE.md)
 
 Copyright (c) 2014 Matt Styles
+
+---
+
+@personalurban
