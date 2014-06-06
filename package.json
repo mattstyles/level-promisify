@@ -1,0 +1,22 @@
+{
+  "name": "level-promisify",
+  "version": "0.0.0",
+  "description": "Level with es6-style promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Level",
+    "Leveldb",
+    "Promise",
+    "es6",
+    "harmony"
+  ],
+  "author": "Matt Styles @personalurban",
+  "license": "ISC",
+  "dependencies": {
+    "es6-promise": "^1.0.0",
+    "level": "^0.18.0"
+  }
+}
