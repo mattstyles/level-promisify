@@ -1,12 +1,25 @@
 var Proto = require( 'uberproto' ),
     Promise = require( 'es6-promise' ).Promise,
-    Level = require( 'level' );
+    Level = require( 'level' ),
+    Sublevel = require( 'level-sublevel' );
 
 /**
  * Returns a level-promisify instance or a promise resolvable when the db is open
  */
 module.exports = function( loc, opts ) {
-    if ( opts && opts.sync ) {
+    if ( !opts ) {
+        throw new Error( 'Level requires a location' );
+    }
+
+    if ( opts.sublevel ) {
+        if ( opts.sync ) {
+            return Proto.extend( SLP, Sublevel( Level( loc, opts ) ) ).create();
+        }
+
+        return Promise.resolve( Proto.extend( SLP, Sublevel( Level( loc, opts ) ) ).create() );
+    }
+
+    if ( opts.sync ) {
         return Proto.extend( LP, Level( loc, opts ) ).create();
     }
 
@@ -23,9 +36,7 @@ module.exports = function( loc, opts ) {
  */
 var LP = Proto.extend({
 
-    init: function() {
-        console.log( 'creating LP' );
-    },
+    init: function() {},
 
     /**
      * Promise wrapper to ensure context
@@ -81,3 +92,18 @@ var LP = Proto.extend({
         })
     }
 });
+
+
+/**
+ * Sublevel-promisify object
+ */
+var SLP = LP.extend({
+
+    sublevel: function( loc, opts ) {
+        if ( opts && opts.sync ) {
+            return Proto.extend( LP, this._super( loc, opts ) ).create();
+        }
+
+        return Promise.resolve( Proto.extend( LP, this._super( loc, opts ) ).create() );
+    }
+})
