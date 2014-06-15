@@ -153,6 +153,21 @@ db.batch([
 
 As the promises are resolved within the usual `levelup` callback functions all of the usual events are still fired and work as normal.
 
+```js
+l.on( 'put', function() {
+    console.log( 'fired on a put event' );
+});
+
+l.put( 'key', 'value' );
+
+// will have output 'fired on a put event'
+```
+
+
+## Contributing
+
+In lieu of a formal styleguide please take care to maintain the current coding style. Add test cases for any additional functionality. The test suite can be run using `npm test`.
+
 
 ## Additional Reading
 
