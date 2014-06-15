@@ -1,6 +1,6 @@
 {
   "name": "level-promisify",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Level and sublevel with es6-style promises",
   "main": "index.js",
   "scripts": {
