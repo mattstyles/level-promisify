@@ -4,7 +4,8 @@
   "description": "Level and sublevel with es6-style promises",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape ./test/*.js",
+    "posttest": "echo 'cleaning dir';rm -rf ./db/"
   },
   "keywords": [
     "Level",
@@ -22,5 +23,8 @@
     "level-sublevel": "^5.2.0",
     "lodash-node": "^2.4.1",
     "uberproto": "^1.1.1"
+  },
+  "devDependencies": {
+    "tape": "^2.13.3"
   }
 }
