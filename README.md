@@ -5,7 +5,7 @@
 
 Skinny wrapper around leveldb that adds promises instead of callbacks.
 
-Uses the current (potentially volatile) es6.next (harmony) promises spec, using [es6-promise](https://github.com/jakearchibald/es6-promise) polyfill.
+Uses the current es6.next (harmony) promises spec, using [es6-promise](https://github.com/jakearchibald/es6-promise) polyfill.
 
 
 ## Getting Started
@@ -151,7 +151,7 @@ db.batch([
 
 ## Events
 
-As the promise are resolved within the usual `levelup` callback functions all of usual events are still fired and work as normal.
+As the promises are resolved within the usual `levelup` callback functions all of the usual events are still fired and work as normal.
 
 
 ## Additional Reading
