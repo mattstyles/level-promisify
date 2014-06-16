@@ -22,12 +22,12 @@ All of your favourite Level and Sublevel functions are still there but you can u
 var Level = require( 'level-promisify' );
 
 Level( './db' )
-    .then( function( db ) {
-        db.put( 'foo', 'bar' )
-            .catch( function( err ) {
-                console.log( err );
-            });
-    });
+  .then( function( db ) {
+    db.put( 'foo', 'bar' )
+      .catch( function( err ) {
+        console.log( err );
+      });
+  });
 ```
 
 ## API
@@ -49,12 +49,12 @@ var Level = require( 'level-promisify' );
 
 // Async - promise
 Level( './db' )
-    .then( function( db ) { /*...*/ } )
-    .catch( function( err ) { /*...*/ } );
+  .then( function( db ) { /*...*/ } )
+  .catch( function( err ) { /*...*/ } );
 
 // vs the synchronous
 var db = Level( './db', {    // will throw on error
-    sync: true
+  sync: true
 });
 db.get( /*...*/ );
 ```
@@ -63,13 +63,13 @@ Level-promisify can also be used to expose a promisified API for [sublevel](http
 
 ```js
 Level( './db', {
-    sublevel: true
+  sublevel: true
 }).then( function( db ){
-    // creating a sublevel is also promisified
-    db.sublevel( 'users' )
-        .then( sub ) {
-            sub.put( 'john', 'sec7et' );    // this will also return a promise!
-        };
+  // creating a sublevel is also promisified
+  db.sublevel( 'users' )
+    .then( sub ) {
+      sub.put( 'john', 'sec7et' );    // this will also return a promise!
+    };
 });
 ```
 
@@ -87,22 +87,22 @@ Synchronous `puts` work the exact same way as a vanilla `Level` instance, meanin
 ```js
 // Promise
 db.put( 'key', 'value' )
-    .then( function( err ) {
-        // Perform some actions
-        // You can handle the error here if you like or use catch
-    })
-    .catch( function( err ) {
-        // Handle the error here
-    });
+  .then( function( err ) {
+    // Perform some actions
+    // You can handle the error here if you like or use catch
+  })
+  .catch( function( err ) {
+    // Handle the error here
+  });
 
 // Callback - as normal
 db.put( 'key', 'value', function( err ) {
-    // Handle an error or do something now the database is a little fuller or updated
+  // Handle an error or do something now the database is a little fuller or updated
 });
 
 // Synchronous
 db.put( 'key', 'value', {
-    sync: true
+  sync: true
 })
 // Now do more stuff
 ```
@@ -114,12 +114,12 @@ db.put( 'key', 'value', {
 
 ```js
 db.get( 'key' )
-    .then( function( value ) {
-        // do something with value
-    })
-    .catch( function( err ) {
-        // Handle error
-    });
+  .then( function( value ) {
+    // do something with value
+  })
+  .catch( function( err ) {
+    // Handle error
+  });
 ```
 
 
@@ -129,8 +129,8 @@ db.get( 'key' )
 
 ```js
 db.del( 'key' )
-    .then()
-    .catch();
+  .then()
+  .catch();
 ```
 
 
@@ -140,12 +140,12 @@ db.del( 'key' )
 
 ```js
 db.batch([
-    { type: 'del', key: 'group' },
-    { type: 'put', key: 'admin', value: 'true' },
-    { type: 'put', key: 'info', value: 'foobar' }
+  { type: 'del', key: 'group' },
+  { type: 'put', key: 'admin', value: 'true' },
+  { type: 'put', key: 'info', value: 'foobar' }
 ])
-    .then()
-    .catch();
+  .then()
+  .catch();
 ```
 
 
@@ -154,11 +154,11 @@ db.batch([
 As the promises are resolved within the usual `levelup` callback functions all of the usual events are still fired and work as normal.
 
 ```js
-l.on( 'put', function() {
-    console.log( 'fired on a put event' );
+db.on( 'put', function() {
+  console.log( 'fired on a put event' );
 });
 
-l.put( 'key', 'value' );
+db.put( 'key', 'value' );
 
 // will have output 'fired on a put event'
 ```
