@@ -1,3 +1,7 @@
+# 0.2.0 - 24.06.14
+
+* update - sublevel should be able to create sublevels!
+
 # 0.1.3 - 16.06.14
 
 * update - npm
