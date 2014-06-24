@@ -131,7 +131,17 @@ var LP = Proto.extend({
 var SLP = LP.extend({
 
     sublevel: function( loc, opts ) {
-        if ( opts && opts.sync ) {
+        var opts = opts || {};
+
+        if ( opts.sublevel ) {
+            if ( opts.sync ) {
+                return Proto.extend( SLP, this._super( loc, opts ) ).create();
+            }
+
+            return Promise.resolve( Proto.extend( SLP, this._super( loc, opts ) ).create() );
+        }
+
+        if ( opts.sync ) {
             return Proto.extend( LP, this._super( loc, opts ) ).create();
         }
 
