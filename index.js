@@ -1,6 +1,6 @@
 var Proto = require( 'uberproto' ),
     Promise = require( 'es6-promise' ).Promise,
-    Level = require( 'level' ),
+    LevelUp = require( 'levelup' ),
     Sublevel = require( 'level-sublevel' ),
     _ = require( 'lodash-node' );
 
@@ -16,18 +16,18 @@ module.exports = function( loc, opts ) {
 
     if ( opts.sublevel ) {
         if ( opts.sync ) {
-            return Proto.extend( SLP, Sublevel( Level( loc, opts ) ) ).create();
+            return Proto.extend( SLP, Sublevel( LevelUp( loc, opts ) ) ).create();
         }
 
-        return Promise.resolve( Proto.extend( SLP, Sublevel( Level( loc, opts ) ) ).create() );
+        return Promise.resolve( Proto.extend( SLP, Sublevel( LevelUp( loc, opts ) ) ).create() );
     }
 
     if ( opts.sync ) {
-        return Proto.extend( LP, Level( loc, opts ) ).create();
+        return Proto.extend( LP, LevelUp( loc, opts ) ).create();
     }
 
     return new Promise( function( resolve, reject ) {
-        Level( loc, opts, function( err, db ) {
+        LevelUp( loc, opts, function( err, db ) {
             if ( err ) reject( err );
             resolve( Proto.extend( LP, db ).create() );
         });

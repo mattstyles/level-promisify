@@ -19,8 +19,9 @@
   "license": "ISC",
   "dependencies": {
     "es6-promise": "^1.0.0",
-    "level": "^0.18.0",
-    "level-sublevel": "^5.2.0",
+    "level-sublevel": "^6.4.4",
+    "leveldown": "^1.0.1",
+    "levelup": "git://github.com/rvagg/node-levelup#1.0.0-wip",
     "lodash-node": "^2.4.1",
     "uberproto": "^1.1.1"
   },
