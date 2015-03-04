@@ -23,14 +23,23 @@ module.exports = function( loc, opts ) {
     }
 
     if ( opts.sync ) {
+        if ( typeof loc === 'object' ) {
+            return Proto.extend( LP, loc ).create();
+        }
+
         return Proto.extend( LP, LevelUp( loc, opts ) ).create();
     }
 
     return new Promise( function( resolve, reject ) {
-        LevelUp( loc, opts, function( err, db ) {
-            if ( err ) reject( err );
-            resolve( Proto.extend( LP, db ).create() );
-        });
+        if ( typeof loc === 'object' ) {
+            resolve( Proto.extend( LP, loc ).create() );
+
+        } else {
+            LevelUp( loc, opts, function( err, db ) {
+                if ( err ) reject( err );
+                resolve( Proto.extend( LP, db ).create() );
+            });
+        }
     });
 }
 
