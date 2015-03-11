@@ -15,12 +15,21 @@
     "Promise",
     "es6"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattstyles/level-promisify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattstyles/level-promisify/issues"
+  },
+  "homepage": "https://github.com/mattstyles/level-promisify",
   "author": "Matt Styles @personalurban",
   "license": "ISC",
   "dependencies": {
     "level": "^0.18.0"
   },
   "devDependencies": {
-    "tape": "^2.13.3"
+    "babel": "^4.7.8",
+    "tape": "^3.5.0"
   }
 }
