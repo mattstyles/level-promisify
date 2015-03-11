@@ -1,29 +1,24 @@
 {
   "name": "level-promisify",
-  "version": "1.0.0",
-  "description": "Level and sublevel with es6-style promises",
-  "main": "index.js",
+  "version": "2.0.0-rc",
+  "description": "Level with promises",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "tape ./test/*.js",
-    "posttest": "echo 'cleaning dir';rm -rf ./db/"
+    "test": "tape ./spec/*.js",
+    "build": "rm -rf dist && babel lib --out-dir dist",
+    "watch": "babel --watch lib --out-dir dist",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "Level",
-    "Sublevel",
     "Leveldb",
     "Promise",
-    "es6",
-    "harmony"
+    "es6"
   ],
   "author": "Matt Styles @personalurban",
   "license": "ISC",
   "dependencies": {
-    "es6-promise": "^1.0.0",
-    "level-sublevel": "^6.4.4",
-    "leveldown": "^1.0.1",
-    "levelup": "git://github.com/rvagg/node-levelup#1.0.0-wip",
-    "lodash-node": "^2.4.1",
-    "uberproto": "^1.1.1"
+    "level": "^0.18.0"
   },
   "devDependencies": {
     "tape": "^2.13.3"
