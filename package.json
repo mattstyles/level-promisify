@@ -1,6 +1,6 @@
 {
   "name": "level-promisify",
-  "version": "2.0.0-rc",
+  "version": "2.0.0",
   "description": "Level with promises",
   "main": "dist/index.js",
   "scripts": {
