@@ -1,3 +1,7 @@
+# 2.0.0
+
+* _add_ - babel build step
+
 # 1.0.0 - 04.03.15
 
 * update some tests

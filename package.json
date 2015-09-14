@@ -1,6 +1,6 @@
 {
   "name": "level-promisify",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Level with promises",
   "main": "dist/index.js",
   "scripts": {
@@ -10,9 +10,9 @@
     "prepublish": "npm run build"
   },
   "keywords": [
-    "Level",
-    "Leveldb",
-    "Promise",
+    "level",
+    "leveldb",
+    "promise",
     "es6"
   ],
   "repository": {
